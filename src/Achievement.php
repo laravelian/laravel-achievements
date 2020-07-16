@@ -109,6 +109,7 @@ abstract class Achievement implements CanAchieve
             $model->description = $this->description;
             $model->points = $this->points;
             $model->secret = $this->secret;
+            $model->slug = $this->slug;
 
             // Syncs
             $model->save();

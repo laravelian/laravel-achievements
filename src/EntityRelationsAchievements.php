@@ -22,7 +22,7 @@ trait EntityRelationsAchievements
      */
     public function achievements(): MorphMany
     {
-        if (config('achievements.locked_sync') && !empty($this->id) {
+        if (config('achievements.locked_sync') && !empty($this->id)) {
             $this->syncAchievements();
         }
         return $this->morphMany(AchievementProgress::class, 'achiever')
@@ -54,31 +54,31 @@ trait EntityRelationsAchievements
     /**
      * Get the entity's achievements in progress.
      *
-     * @return Collection
+     * @return MorphMany
      */
-    public function inProgressAchievements(): Collection
+    public function inProgressAchievements(): MorphMany
     {
-        return $this->achievements()->whereNull('unlocked_at')->where('points', '>', 0)->get();
+        return $this->achievements()->whereNull('unlocked_at')->where('points', '>', 0)();
     }
 
     /**
      * Get the entity's achievements not in progress.
      *
-     * @return Collection
+     * @return MorphMany
      */
-    public function notInProgressAchievements(): Collection
+    public function notInProgressAchievements(): MorphMany
     {
-        return $this->achievements()->whereNull('unlocked_at')->where('points', '=', 0)->get();
+        return $this->achievements()->whereNull('unlocked_at')->where('points', '=', 0);
     }
 
     /**
      * Get the entity's unlocked achievements.
      *
-     * @return Collection
+     * @return MorphMany
      */
-    public function unlockedAchievements(): Collection
+    public function unlockedAchievements(): MorphMany
     {
-        return $this->achievements()->whereNotNull('unlocked_at')->get();
+        return $this->achievements()->whereNotNull('unlocked_at');
     }
 
     /**

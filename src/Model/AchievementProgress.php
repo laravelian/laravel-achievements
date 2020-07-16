@@ -37,6 +37,8 @@ class AchievementProgress extends Model
      */
     protected $table = 'achievement_progress';
 
+    protected $appends = ['achievement_class'];
+
     /**
      * AchievementProgress constructor.
      * @param array $attributes
@@ -145,6 +147,11 @@ class AchievementProgress extends Model
         }
 
         return $result;
+    }
+
+    public function getAchievementClassAttribute()
+    {
+        return $this->details->getClass();
     }
 
     /**
