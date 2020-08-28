@@ -61,7 +61,7 @@ class AchievementDetails extends Model
      *
      * @return object
      */
-    public function getClass(): object
+    public function getClass()
     {
         return new $this->class_name();
     }
